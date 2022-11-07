@@ -55,6 +55,7 @@ about:
   license_family: MIT
   license_file: LICENSE
   license_url: https://github.com/dolfinus/setuptools-git-versioning/blob/v{{ version }}/LICENSE
+
 extra:
   recipe-maintainers:
     - BastianZim
