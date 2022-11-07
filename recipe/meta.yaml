@@ -6,8 +6,10 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c4c083cf7ab3fca54f73f096b7cb07aa7bdc479df0b4adaad8f1519c4a39b812
+  # No source distribution files available for v1.13.0 on pypi, 
+  # see https://pypi.org/project/setuptools-git-versioning/1.13.0/#files
+  url: https://github.com/dolfinus/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: f3d8940a10973d56210aeb57f2aceaa992555be87a3faa1fb78a4d20fe437a38
 
 build:
   number: 0
@@ -29,7 +31,7 @@ requirements:
     - packaging
     - python
     - setuptools
-    - toml >=0.10.2
+    - toml >=0.10.2  # [py<311]
 
 test:
   imports:
