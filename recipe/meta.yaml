@@ -26,6 +26,7 @@ requirements:
     - python
     - setuptools
     - toml
+    - wheel
   run:
     - deprecated
     - packaging
@@ -57,3 +58,5 @@ about:
 extra:
   recipe-maintainers:
     - BastianZim
+  skip-lints:
+    - uses_setuptools
