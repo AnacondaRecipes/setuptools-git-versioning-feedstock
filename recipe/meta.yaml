@@ -10,40 +10,52 @@ source:
   sha256: c4c083cf7ab3fca54f73f096b7cb07aa7bdc479df0b4adaad8f1519c4a39b812
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
   number: 0
+  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install . -vv
+  entry_points:
+    - setuptools-git-versioning=setuptools_git_versioning:__main__
 
 requirements:
   host:
     - deprecated
     - packaging
     - pip
-    - python >=3.7
+    - python
     - setuptools
-    - toml >=0.10.2
+    - toml
+    - wheel
   run:
     - deprecated
     - packaging
-    - python >=3.7
+    - python
     - setuptools
-    - toml >=0.10.2
+    - toml >=0.10.2  # [py<311]
 
 test:
   imports:
     - setuptools_git_versioning
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
+    - setuptools-git-versioning --help
 
 about:
   home: https://setuptools-git-versioning.readthedocs.io
   summary: Use git repo data for building a version number according PEP-440
+  description: |
+    Use git repo data (latest tag, current commit hash, etc) for building a version number according PEP 440.
   dev_url: https://github.com/dolfinus/setuptools-git-versioning
+  doc_url: https://setuptools-git-versioning.readthedocs.io/
+  doc_source_url: https://github.com/dolfinus/setuptools-git-versioning/tree/master/docs
   license: MIT
+  license_family: MIT
   license_file: LICENSE
+  license_url: https://github.com/dolfinus/setuptools-git-versioning/blob/v{{ version }}/LICENSE
 
 extra:
   recipe-maintainers:
     - BastianZim
+  skip-lints:
+    - uses_setuptools
