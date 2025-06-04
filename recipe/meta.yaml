@@ -51,6 +51,7 @@ test:
     - toml
     - python-build
     - coverage
+    - git  # [linux]
 
 about:
   home: https://setuptools-git-versioning.readthedocs.io
