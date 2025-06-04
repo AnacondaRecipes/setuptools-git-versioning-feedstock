@@ -49,7 +49,7 @@ test:
     - pytest
     - pytest-rerunfailures
     - toml
-    - build
+    - python-build
     - coverage
 
 about:
