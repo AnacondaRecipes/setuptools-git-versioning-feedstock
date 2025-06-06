@@ -35,7 +35,7 @@ requirements:
 
 # E   ValueError: Invalid format string
 {% set deselect_tests = "" %}
-{% set deselect_tests = deselect_tests + " --deselect=gh_src\tests\test_integration\test_substitution.py" %}  # [win]
+{% set deselect_tests = deselect_tests + " --deselect=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
 
 test:
   source_files:
