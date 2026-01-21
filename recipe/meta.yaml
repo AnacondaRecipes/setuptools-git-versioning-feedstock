@@ -1,15 +1,17 @@
 {% set name = "setuptools-git-versioning" %}
-{% set version = "2.1.0" %}
+{% set version = "3.0.1" %}
+{% set deselect_tests = "" %}
+{% set deselect_tests = deselect_tests + " --deselect=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-    sha256: 6aef5b8bb1cfb953b6b343d27cbfc561d96cf2a2ee23c2e0dd3591042a059921
+  - url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+    sha256: c8a599bacf163b5d215552b5701faf5480ffc4d65426a5711a010b802e1590eb
   - url: https://github.com/dolfinus/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 36a5c9bd91d75f12faba2c6fd87b1b1807cb9eabeca2ce0951f14ad4f47642e0
+    sha256: 63e70129525d79bbc155d3c2e1e4bbedaa1ddaee42053b46d7bf51360a1ffa70
     folder: gh_src
 
 build:
@@ -17,7 +19,7 @@ build:
   entry_points:
     - setuptools-git-versioning=setuptools_git_versioning:__main__
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<37]
+  skip: true  # [py<37]
 
 requirements:
   host:
@@ -34,9 +36,6 @@ requirements:
     - tomli >=2.0.1  # [py<311]
 
 # E   ValueError: Invalid format string
-{% set deselect_tests = "" %}
-{% set deselect_tests = deselect_tests + " --deselect=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
-
 test:
   source_files:
     - gh_src/tests
