@@ -33,10 +33,6 @@ requirements:
     - setuptools
     - tomli >=2.0.1  # [py<311]
 
-# E   ValueError: Invalid format string
-# {% set deselect_tests = "" %}
-# {% set deselect_tests = deselect_tests + " --deselect=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
-
 test:
   source_files:
     - gh_src/tests
@@ -55,7 +51,7 @@ test:
     - toml
     - python-build
     - coverage
-    - git  # [linux]
+    - git  # [linux or win]
     - tomli-w
     - wheel
 
