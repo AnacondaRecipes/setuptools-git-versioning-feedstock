@@ -1,7 +1,5 @@
 {% set name = "setuptools-git-versioning" %}
 {% set version = "3.0.1" %}
-{% set deselect_tests = "" %}
-{% set deselect_tests = deselect_tests + " --deselect=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
 
 package:
   name: {{ name|lower }}
@@ -17,7 +15,7 @@ source:
 build:
   number: 0
   entry_points:
-    - setuptools-git-versioning=setuptools_git_versioning:__main__
+    - setuptools-git-versioning = setuptools_git_versioning.cli:main
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<37]
 
@@ -36,6 +34,9 @@ requirements:
     - tomli >=2.0.1  # [py<311]
 
 # E   ValueError: Invalid format string
+# {% set deselect_tests = "" %}
+# {% set deselect_tests = deselect_tests + " --deselect=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
+
 test:
   source_files:
     - gh_src/tests
@@ -46,8 +47,7 @@ test:
   commands:
     - pip check
     - setuptools-git-versioning --help
-    # The tests took more than 3 hours to run. Uncomment and check before merging.
-    #- pytest -v {{ deselect_tests }} gh_src/tests
+    - pytest -v gh_src/tests
   requires:
     - pip
     - pytest
@@ -56,6 +56,8 @@ test:
     - python-build
     - coverage
     - git  # [linux]
+    - tomli-w
+    - wheel
 
 about:
   home: https://setuptools-git-versioning.readthedocs.io
