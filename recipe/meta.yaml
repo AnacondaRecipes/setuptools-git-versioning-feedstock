@@ -40,8 +40,8 @@ requirements:
 # >               raise subprocess.CalledProcessError(process.returncode, cmd, output=stdout, stderr=stderr)
 # E               subprocess.CalledProcessError: Command 
 # '('C:\\Users\\task_177011286560421\\croot\\setuptools-git-versioning_1770112914973\\_test_env\\python.exe', '-m', 'build', '-s', '--no-isolation')' returned non-zero exit status 1.
-{% set ignore_tests = ignore_tests + " --ignore=gh_src\tests\test_integration\test_tag.py" %}  # [win]
-{% set ignore_tests = ignore_tests + " --ignore=gh_src\tests\test_integration\test_version_file.py" %}  # [win]
+{% set ignore_tests = ignore_tests + " --ignore=gh_src/tests/test_integration/test_tag.py" %}  # [win]
+{% set ignore_tests = ignore_tests + " --ignore=gh_src/tests/test_integration/test_version_file.py" %}  # [win]
 
 test:
   source_files:
