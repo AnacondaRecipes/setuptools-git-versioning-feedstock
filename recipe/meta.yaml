@@ -63,6 +63,8 @@ test:
     - git  # [linux or win]
     - tomli-w
     - wheel
+    # 3.2.0 integration tests exercise the scikit-build-core dynamic-metadata provider
+    - scikit-build-core
 
 about:
   home: https://setuptools-git-versioning.readthedocs.io
