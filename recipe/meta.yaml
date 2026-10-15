@@ -4,6 +4,9 @@
 {% set ignore_tests = ignore_tests + " --ignore=gh_src/tests/test_integration/test_substitution.py" %}  # [win]
 {% set ignore_tests = ignore_tests + " --ignore=gh_src/tests/test_integration/test_tag.py" %}  # [win]
 {% set ignore_tests = ignore_tests + " --ignore=gh_src/tests/test_integration/test_version_file.py" %}  # [win]
+# 3.2.0 test extra dynamic-metadata>=0.4 is PyPI-only (not on defaults).
+{% set ignore_tests = ignore_tests + " --deselect=gh_src/tests/test_integration/test_dynamic_metadata.py::test_dynamic_metadata_loader" %}
+{% set ignore_tests = ignore_tests + " --deselect=gh_src/tests/test_integration/test_dynamic_metadata.py::test_end_to_end_build_via_scikit_build_core" %}
 
 # E   ValueError: Invalid format string
 # GIT tests randomly failing on CI on Windows
@@ -60,11 +63,9 @@ test:
     - toml
     - python-build
     - coverage
-    - git  # [linux or win]
+    - git  # conda git: osx system git does not expand git-archive export-subst in archival e2e tests
     - tomli-w
     - wheel
-    # 3.2.0 integration tests exercise the scikit-build-core dynamic-metadata provider
-    - scikit-build-core
 
 about:
   home: https://setuptools-git-versioning.readthedocs.io
